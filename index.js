@@ -32,7 +32,7 @@ app.use(
   app.use(passport.session());
   
 app.get('/', (req,res) => {
-    res.send(`hola ${req.user.name} que onda`)
+    res.send(req.user)
 })
 app.get('/api/current_user', (req, res) => {
     res.send(req.user)
