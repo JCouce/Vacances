@@ -1,81 +1,29 @@
-const express = require ('express');
-const GoogleStrategy = require ('passport-google-oauth20');
-const passport = require ('passport');
+const express = require('express');
+const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
-const keys = require ('./config/keys');
-const mongoose = require ('mongoose');
+const passport = require('passport');
+//const bodyParser = require('body-parser');
+const keys = require('./config/keys');
 require ('./models/User');
-
-const User = mongoose.model ('users');
-
-passport.serializeUser ((user, done) => {
-  done (null, user.id);
-});
-
-passport.deserializeUser ((id, done) => {
-  User.findById (id).then (user => {
-    done (null, user);
-  });
-});
+require('./services/passport');
 
 mongoose.connect (keys.mongoURI);
 
 const app = express ();
 
 app.use(
-    cookieSession({
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-      keys: [keys.cookieKey]
-    })
-  );
-  app.use(passport.initialize());
-  app.use(passport.session());
-  
-app.get('/', (req,res) => {
-    res.send(req.user)
-})
-app.get('/api/current_user', (req, res) => {
-    res.send(req.user)
-});
-
-app.get('/api/logout', (req, res) => {
-    req.logout();
-    res.send(req.user)
-});
-
-app.get (
-  '/auth/google',
-  passport.authenticate ('google', {
-    scope: ['profile', 'email'],
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
   })
 );
 
-app.get ('/auth/google/callback', passport.authenticate ('google'));
+app.use(passport.initialize());
+app.use(passport.session());
 
-passport.use (
-  new GoogleStrategy (
-    {
-      clientID: keys.googleClientID,
-      clientSecret: keys.googleClientSecret,
-      callbackURL: '/auth/google/callback',
-      proxy: true
-    },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne ({googleId: profile.id}).then (existingUser => {
-        if (existingUser) {
-          done (null, existingUser);
-        } else {
-          new User ({
-            googleId: profile.id,
-            name: profile.name.givenName,
-          })
-            .save ()
-            .then (user => done (null, user));
-        }
-      });
-    }
-  )
-);
+
+require('./routes/authRoutes')(app);
+  
 
 const PORT = process.env.PORT || 5000;
 app.listen (PORT, () => {

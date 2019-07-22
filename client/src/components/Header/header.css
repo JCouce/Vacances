@@ -1,0 +1,37 @@
+.header-wrapper{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 3fr 1fr 1fr;
+    height: 65px;
+    /* grid-template-areas:"a b c d"; */
+    border-top: 5px solid rgb(33, 147, 204);
+    background: #fff;
+    box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+}
+
+
+.header-item {
+    /* We center the contents of these items. You can also do this with flexbox too! */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+.header-item:hover{
+    box-shadow: 0 -5px 0 #233F4D;
+    background: rgb(128, 89, 89,0.3)
+}
+
+nav a.logo{
+    grid-column-start: 1;
+  }
+.username{
+    grid-column-start: 3;
+  }
+.login{
+    grid-column-start: 4;
+  }
+.user {
+  display: flex;
+  justify-content: space-around;
+}
