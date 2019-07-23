@@ -7,7 +7,6 @@ const Card = (props) => {
     return (
         <div style={{backgroundImage: 'url(' + props.img + ')'}} className="card">
             <h1>{props.name.toUpperCase()}</h1>
-            {/* <img src={props.img} alt=""/> */}
         </div>
     );
 }

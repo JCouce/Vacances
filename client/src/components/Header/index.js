@@ -7,9 +7,9 @@ class Header extends Component {
         switch (this.props.auth) {
             case null:
                 return (
-                    <a className="header-item login" href="/auth/google">
+                    <div className="header-item login">
                         Loading
-                    </a>
+                    </div>
                 )
             case false:
                 return (

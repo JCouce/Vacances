@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import './landing.css';
+import { Link } from 'react-router-dom'
 
 class Landing extends Component {
   render () {
     return (
       <div className="landing-wrapper">
         <div className="aside-left">
-          <a className="circle" href="/dashboard">
+          <Link to={'/dashboard'} className="circle">
             <i class="arrow right" />
-          </a>
+          </Link>
           <h1>
             Reserva tus vacaciones
           </h1>
@@ -17,7 +18,6 @@ class Landing extends Component {
           </p>
         </div>
         <div className="aside-right">
-          {/* <img src="http://www.metahosp.com/wp-content/uploads/2014/07/summer-holidays-500x240.jpg" alt="summer"/> */}
         </div>
       </div>
     );
