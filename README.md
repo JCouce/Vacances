@@ -5,11 +5,9 @@ In the future steps there should be alerts and analytics that allows the adminis
 
 ## Getting Started
 
-To initiate this project you can just:
- - 
- - 
- - 
- - Navigate to localhost:3000 to see the front end of the aplication
+Hello fella developer, this is a simple project on how to manage vacations for a small team. Hope you enjoy!
+
+Happy coding!
 
 ### Prerequisites
 
@@ -87,7 +85,7 @@ the create-react-app in a folder server/client
 
 ## Authors
 
-* **Javier** - *Everything work's xD* - [Jcouce](https://github.com/JCouce)
+* **Javier** - *Everything work xD* - [Jcouce](https://github.com/JCouce)
 * **Juan** - *A commit per day!* - [Juan](https://github.com/JCouce)
 
 See also the list of [contributors](https://github.com/jcouce/vacances/contributors) who participated in this project.
