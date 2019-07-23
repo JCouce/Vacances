@@ -6,9 +6,8 @@ import './app.css';
 
 import Header from './Header/';
 import Landing from './Landing/';
+import Dashboard from './Dashboard/index';
 
-
-const Dashboard = () => <h2>Dashboard</h2>;
 
 class App extends Component {
     componentDidMount() {

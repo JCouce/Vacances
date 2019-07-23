@@ -2,7 +2,7 @@
     display: grid;
     grid-gap: 20px;
     grid-template-columns: 1fr 3fr 1fr 1fr;
-    height: 65px;
+    height: 9vh;
     /* grid-template-areas:"a b c d"; */
     border-top: 5px solid rgb(33, 147, 204);
     background: #fff;
