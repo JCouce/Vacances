@@ -9,6 +9,11 @@ module.exports = app => {
 
     res.send(months);
   });
+  app.get ('/api/monthInfo/:id', async (req, res) => {
+    const months = await Month.find({"monthId":req.params.id});
+
+    res.send(months);
+  });
   app.get('/api/months/:id', async (req, res) => {
     const days = await Day.find({"monthId":req.params.id}).sort({ "dayId": 'asc' });
 

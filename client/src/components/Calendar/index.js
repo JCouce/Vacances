@@ -42,19 +42,19 @@ class Calendar extends Component {
     }
   }
   renderDays () {
-    let startingDay = this.computeStartingDay();
+    let startingDay = this.computeStartingDay ();
     let daysArray = [];
     var days = this.props.days;
 
     days.sort (function (a, b) {
       return a.dayId - b.dayId;
     });
-    daysArray = days.map ((day, index) => {
+    daysArray = days.map (day => {
       return <Day className="day" number={day.dayId} key={'day' + day.dayId} />;
     });
 
     for (let i = 0; i < startingDay; i++) {
-      daysArray.unshift (<Day className="day blank" key={'blank' + i}/>);
+      daysArray.unshift (<Day className="day blank" key={'blank' + i} />);
     }
 
     return daysArray;
@@ -66,7 +66,6 @@ class Calendar extends Component {
         <div className="calendar-wrapper">
           {this.renderDays ()}
         </div>
-
       </div>
     );
   }
