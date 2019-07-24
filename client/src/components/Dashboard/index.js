@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Card from '../Card';
 import './dashboard.css';
+import { fetchMonths } from '../../actions';
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.fetchMonths();
+
+  }
   renderContent () {
     switch (this.props.auth) {
       case null:
@@ -15,23 +20,10 @@ class Dashboard extends Component {
     }
   }
   renderMonths () {
-    let months = [
-      'enero',
-      'febrero',
-      'marzo',
-      'abril',
-      'mayo',
-      'junio',
-      'julio',
-      'agosto',
-      'septiembre',
-      'octubre',
-      'noviembre',
-      'diciembre',
-    ];
+    let months = this.props.months;
     return months.map ((month, index) => {
       let randomImg ='https://picsum.photos/id/' + ((index*10)+2) +'/400/400';
-      return <Card img={randomImg} name={month} key={month.charAt (0)} />;
+      return <Card img={randomImg} name={month.name} monthId={month.monthId} key={month.monthId} />;
     });
   }
   render () {
@@ -42,8 +34,11 @@ class Dashboard extends Component {
     );
   }
 }
-function mapStateToProps({auth}) {
-  return {auth};
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+    months: state.months
+  };
 }
 
-export default connect (mapStateToProps) (Dashboard);
+export default connect (mapStateToProps, {fetchMonths}) (Dashboard);

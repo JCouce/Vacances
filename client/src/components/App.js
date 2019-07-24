@@ -7,6 +7,7 @@ import './app.css';
 import Header from './Header/';
 import Landing from './Landing/';
 import Dashboard from './Dashboard/index';
+import Calendar from './Calendar/';
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
             <Header />
             <Route exact={true} path="/" component={Landing} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/month/:id" component={Calendar} />
           </div>
         </BrowserRouter>
       </div>
