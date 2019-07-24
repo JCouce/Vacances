@@ -1,0 +1,12 @@
+.day{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-size: cover;
+    font-size: 15px;
+}
+
+.day:hover{
+    opacity:0.3;
+}

@@ -22,7 +22,7 @@
     background: rgb(128, 89, 89,0.3)
 }
 
-nav a.logo{
+.logo{
     grid-column-start: 1;
   }
 .username{

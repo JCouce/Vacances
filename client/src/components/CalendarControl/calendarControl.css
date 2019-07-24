@@ -1,0 +1,23 @@
+.control-bar{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.control-wrapper{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 3fr 1fr;
+    height: 9vh;
+    background: white;
+    box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+    grid-column-start: 2;
+}
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button:hover{
+    box-shadow: 0 -1px 0 #233F4D;
+    background: rgb(128, 89, 89,0.3)
+}
