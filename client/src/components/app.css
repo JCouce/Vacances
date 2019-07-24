@@ -38,3 +38,6 @@ html {
     text-decoration: inherit;
     font-weight: inherit;
   }
+  ul li{
+    list-style: none;
+  }

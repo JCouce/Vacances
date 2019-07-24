@@ -3,7 +3,7 @@ import './day.css'
 
 const Day = (props) => {
     return (
-        <div className="day">
+        <div className={props.blank?'blank':'day'}>
             {props.number}
         </div>
     );

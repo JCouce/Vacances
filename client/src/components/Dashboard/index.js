@@ -21,6 +21,9 @@ class Dashboard extends Component {
   }
   renderMonths () {
     let months = this.props.months;
+    months.sort (function (a, b) {
+      return a.monthId - b.monthId;
+    });
     return months.map ((month, index) => {
       let randomImg ='https://picsum.photos/id/' + ((index*10)+2) +'/400/400';
       return <Card img={randomImg} name={month.name} monthId={month.monthId} key={month.monthId} />;

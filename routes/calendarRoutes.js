@@ -10,7 +10,7 @@ module.exports = app => {
     res.send(months);
   });
   app.get ('/api/monthInfo/:id', async (req, res) => {
-    const months = await Month.find({"monthId":req.params.id});
+    const months = await Month.findOne({"monthId":req.params.id});
 
     res.send(months);
   });
