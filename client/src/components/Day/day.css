@@ -1,4 +1,4 @@
-.day{
+div.day{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -13,4 +13,13 @@
     color:white;
     background: #B8C4CC;
     transform: scale(1.2);
+}
+
+.selected {
+    background: #8FB399;
+}
+.selected:hover{
+    color:black;
+    background: #8FB399;
+    transform: scale(1);
 }

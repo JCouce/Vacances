@@ -9,6 +9,13 @@ class Calendar extends Component {
     this.props.fetchDays (this.props.match.params.id);
     this.props.fetchMonthInfo(this.props.match.params.id);
   }
+
+  handler (someValue) {
+    this.setState({
+      someVar: someValue
+    })
+  }
+
   renderDays () {
     let startingDay = this.props.monthInfo.startingDay;
     let daysArray = [];
@@ -18,7 +25,7 @@ class Calendar extends Component {
       return a.dayId - b.dayId;
     });
     daysArray = days.map (day => {
-      return <Day number={day.dayId} key={'day' + day.dayId} />;
+      return <Day selected={day.dayId%2===0?true:false} number={day.dayId} key={'day' + day.dayId} />;
     });
 
     for (let i = 0; i < startingDay; i++) {

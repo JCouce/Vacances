@@ -1,12 +1,19 @@
-import React from 'react';
-import './day.css'
+import React, {useState} from 'react';
+import './day.css';
 
-const Day = (props) => {
-    return (
-        <div className={props.blank?'blank':'day'}>
-            {props.number}
-        </div>
-    );
-}
+const Day = props => {
+  const [selected, setSelected] = useState (props.selected?true:false);
+  return (
+    <div
+      className={[
+        props.blank ? 'blank' : 'day',
+        selected ? 'selected' : '',
+      ].join (' ')}
+      onClick={() => setSelected (selected ? false : true)}
+    >
+      {props.number}
+    </div>
+  );
+};
 
 export default Day;
