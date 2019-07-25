@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 const Card = (props) => {
     
     return (
-        <Link to={'/month/' + props.monthId} style={{backgroundImage: 'url(' + props.img + ')'}} className="card">
+        //TODO: Find the way to use LINK instead of anchor and dont mix the props between months
+        <a href={'/month/' + props.monthId} style={{backgroundImage: 'url(' + props.img + ')'}} className="card">
             <h1>{props.name.toUpperCase()}</h1>
-        </Link>
+        </a>
     );
 }
 

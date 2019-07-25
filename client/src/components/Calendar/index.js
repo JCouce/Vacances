@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchDays, fetchMonthInfo} from '../../actions/index';
+import { fetchDays, fetchMonthInfo, fetchRequests } from '../../actions/index';
 import {connect} from 'react-redux';
 import Day from '../Day/';
 import './calendar.css';
@@ -8,9 +8,10 @@ class Calendar extends Component {
   state = {
     daySelected: [],
   };
-  componentDidMount () {
-    this.props.fetchDays (this.props.match.params.id);
-    this.props.fetchMonthInfo (this.props.match.params.id);
+  async componentDidMount () {
+    await this.props.fetchRequests(this.props.match.params.id);
+    await this.props.fetchMonthInfo (this.props.match.params.id);
+    await this.props.fetchDays (this.props.match.params.id);
   }
 
   onDayClcikHandler = newDay => {
@@ -30,19 +31,28 @@ class Calendar extends Component {
       });
     }
   };
-
-  renderDays () {
+  renderDays = () => {
     let startingDay = this.props.monthInfo.startingDay;
     let daysArray = [];
-    var days = this.props.days;
-
+    var days = [...this.props.days];
+    var requests = [...this.props.requests];
+    //Sort days descending
     days.sort (function (a, b) {
       return a.dayId - b.dayId;
     });
+    //Mark the requested days with the param "requested"
+    days.forEach(e => {
+     let found = requests.find((r)=>{
+        return r.dayId === e.dayId;
+      })
+      e.requested = found || {};
+    })
+    //Map the components
     daysArray = days.map (day => {
+      var requested = day.requested.status?true:false;
       return (
         <Day
-          selected={day.dayId % 2 === 0 ? true : false}
+          selected={requested}
           click={this.onDayClcikHandler}
           number={day.dayId}
           key={'day' + day.dayId}
@@ -57,6 +67,12 @@ class Calendar extends Component {
     return daysArray;
   }
   render () {
+    if (this.props.days.length < 1) {
+      return (
+        <h1>LOADING</h1>
+      )
+    }
+    console.log(this.props);
     return (
       <div>
         <CalendarControl monthId={this.props.match.params.id} />
@@ -85,8 +101,9 @@ const mapStateToProps = state => {
   return {
     days: state.days,
     monthInfo: state.monthInfo,
+    requests: state.requests
   };
 };
-export default connect (mapStateToProps, {fetchDays, fetchMonthInfo}) (
+export default connect (mapStateToProps, {fetchDays, fetchMonthInfo, fetchRequests}) (
   Calendar
 );

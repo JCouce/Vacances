@@ -9,8 +9,8 @@ module.exports = app => {
 
     res.send (months);
   });
-  app.get ('/api/hollidaysrequest', async (req, res) => {
-    const request = await Request.find ({userId:req.user.id});
+  app.get ('/api/hollidaysrequest/:id', async (req, res) => {
+    const request = await Request.find ({userId:req.user.id, monthId: req.params.id});
 
     res.send (request);
   });
