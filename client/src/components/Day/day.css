@@ -38,3 +38,17 @@ div.day{
     color:black;
     transform: scale(1);
 }
+.requested.accepted{
+    background: #BFFFBF;
+}
+.requested.accepted:hover{
+    color:black;
+    transform: scale(1);
+}
+.requested.denied{
+    background: #FFB3B3;
+}
+.requested.denied:hover{
+    color:black;
+    transform: scale(1);
+}

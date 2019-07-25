@@ -9,6 +9,9 @@ class Calendar extends Component {
     daySelected: [],
   };
   async componentDidMount () {
+    //TODO:
+    //Probably this information should be stored in the state
+    //Whit this way we can use Link tags instead of anchor tags to improve reactivity
     await this.props.fetchRequests(this.props.match.params.id);
     await this.props.fetchMonthInfo (this.props.match.params.id);
     await this.props.fetchDays (this.props.match.params.id);
@@ -41,13 +44,14 @@ class Calendar extends Component {
       return a.dayId - b.dayId;
     });
     //Mark the requested days with the param "requested"
+    //adding the whole information of the hollidayRequest
     days.forEach(e => {
      let found = requests.find((r)=>{
         return r.dayId === e.dayId;
       })
       e.requested = found || {};
     })
-    //Map the components
+    //Map the components whit all the info
     daysArray = days.map (day => {
       var requested = day.requested.status?true:false;
 
@@ -61,7 +65,8 @@ class Calendar extends Component {
         />
       );
     });
-
+    //Add N days before to make the calendar shift to the starting day
+    //Ex: Wednesday = 2 (monday and tuesday)
     for (let i = 0; i < startingDay; i++) {
       daysArray.unshift (<Day blank={true} key={'blank' + i} />);
     }

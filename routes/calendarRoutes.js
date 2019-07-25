@@ -31,11 +31,11 @@ module.exports = app => {
 
   app.get ('/api/hr', async (req, res) => {
     await new Request ({
-      requestId: '0',
+      requestId: '1',
       userId: '5d2ef8a3bb703e0e80442911',
-      dayId: '1',
+      dayId: '6',
       monthId: '1',
-      status: 'pending',
+      status: 'denied',
       createdAt: new Date ('1989-05-05'),
       updatedBy: {
         _id: '5d2ef8a3bb703e0e80442911',
