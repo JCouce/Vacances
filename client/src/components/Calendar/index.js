@@ -50,9 +50,11 @@ class Calendar extends Component {
     //Map the components
     daysArray = days.map (day => {
       var requested = day.requested.status?true:false;
+
       return (
         <Day
-          selected={requested}
+          status={day.requested.status}
+          requested={requested}
           click={this.onDayClcikHandler}
           number={day.dayId}
           key={'day' + day.dayId}

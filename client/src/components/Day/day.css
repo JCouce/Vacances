@@ -14,12 +14,27 @@ div.day{
     background: #B8C4CC;
     transform: scale(1.2);
 }
+.dayNumber{
+    cursor: pointer;
+}
 
+/* Estados */
 .selected {
     background: #8FB399;
 }
 .selected:hover{
     color:black;
     background: #8FB399;
+    transform: scale(1);
+}
+.requested{
+    border:3px solid rgba(0, 0, 0, 0.3)
+}
+
+.requested.pending{
+    background: #B3A1A1;
+}
+.requested.pending:hover{
+    color:black;
     transform: scale(1);
 }
