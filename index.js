@@ -7,6 +7,7 @@ const keys = require('./config/keys');
 require ('./models/User');
 require ('./models/Month');
 require ('./models/Day');
+require ('./models/HollidayRequest');
 require('./services/passport');
 
 mongoose.connect (keys.mongoURI);

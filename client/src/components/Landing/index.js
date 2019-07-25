@@ -8,7 +8,7 @@ class Landing extends Component {
       <div className="landing-wrapper">
         <div className="aside-left">
           <Link to={'/dashboard'} className="circle">
-            <i class="arrow right" />
+            <i className="arrow right" />
           </Link>
           <h1>
             Reserva tus vacaciones
