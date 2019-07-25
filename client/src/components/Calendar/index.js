@@ -1,20 +1,35 @@
 import React, {Component} from 'react';
-import { fetchDays, fetchMonthInfo } from '../../actions/index';
+import {fetchDays, fetchMonthInfo} from '../../actions/index';
 import {connect} from 'react-redux';
 import Day from '../Day/';
 import './calendar.css';
 import CalendarControl from '../CalendarControl';
 class Calendar extends Component {
+  state = {
+    daySelected: [],
+  };
   componentDidMount () {
     this.props.fetchDays (this.props.match.params.id);
-    this.props.fetchMonthInfo(this.props.match.params.id);
+    this.props.fetchMonthInfo (this.props.match.params.id);
   }
 
-  handler (someValue) {
-    this.setState({
-      someVar: someValue
-    })
-  }
+  onDayClcikHandler = newDay => {
+    var dayArray = [...this.state.daySelected];
+
+    if (dayArray.includes (newDay)) {
+      var index = dayArray.indexOf (newDay);
+      if (index >= 0) {
+        dayArray.splice (index, 1);
+      }
+      this.setState ({
+        daySelected: dayArray
+      });
+    } else {
+      this.setState ({
+        daySelected: [...this.state.daySelected, newDay],
+      });
+    }
+  };
 
   renderDays () {
     let startingDay = this.props.monthInfo.startingDay;
@@ -25,7 +40,14 @@ class Calendar extends Component {
       return a.dayId - b.dayId;
     });
     daysArray = days.map (day => {
-      return <Day selected={day.dayId%2===0?true:false} number={day.dayId} key={'day' + day.dayId} />;
+      return (
+        <Day
+          selected={day.dayId % 2 === 0 ? true : false}
+          click={this.onDayClcikHandler}
+          number={day.dayId}
+          key={'day' + day.dayId}
+        />
+      );
     });
 
     for (let i = 0; i < startingDay; i++) {
@@ -38,7 +60,11 @@ class Calendar extends Component {
     return (
       <div>
         <CalendarControl monthId={this.props.match.params.id} />
-        <div className="calendar-title">{this.props.monthInfo.name?this.props.monthInfo.name.toUpperCase():''}</div>
+        <div className="calendar-title">
+          {this.props.monthInfo.name
+            ? this.props.monthInfo.name.toUpperCase ()
+            : ''}
+        </div>
         <ul className="day-names-wrapper">
           <li className="day-name mon">Lunes</li>
           <li className="day-name tue">Martes</li>
@@ -58,7 +84,9 @@ class Calendar extends Component {
 const mapStateToProps = state => {
   return {
     days: state.days,
-    monthInfo: state.monthInfo
+    monthInfo: state.monthInfo,
   };
 };
-export default connect (mapStateToProps, {fetchDays, fetchMonthInfo}) (Calendar);
+export default connect (mapStateToProps, {fetchDays, fetchMonthInfo}) (
+  Calendar
+);

@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import './day.css';
 
 const Day = props => {
+  const onDayClickHandler = () => {
+    props.click(props.number)
+    setSelected (selected ? false : true);
+  }
   const [selected, setSelected] = useState (props.selected?true:false);
   return (
     <div
@@ -9,7 +13,7 @@ const Day = props => {
         props.blank ? 'blank' : 'day',
         selected ? 'selected' : '',
       ].join (' ')}
-      onClick={() => setSelected (selected ? false : true)}
+      onClick={onDayClickHandler}
     >
       {props.number}
     </div>
