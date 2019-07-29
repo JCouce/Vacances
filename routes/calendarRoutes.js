@@ -39,7 +39,7 @@ module.exports = app => {
       createdAt: new Date ('1995-06-07'),
       updatedBy: {"_id":"5d2f18e279fa500016b37a91","googleId":"118415261878187794841","name":"Juan","__v":0},
       lastModified: new Date ('2019-07-05'),
-      message: 'Hablamelo',
+      message: " Q'hubo papi " ,
     }).save ();
   
     res.send ('done');
