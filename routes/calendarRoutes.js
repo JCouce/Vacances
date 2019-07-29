@@ -31,20 +31,15 @@ module.exports = app => {
 
   app.get ('/api/hr', async (req, res) => {
     await new Request ({
-      requestId: '1',
-      userId: '5d2ef8a3bb703e0e80442911',
+      requestId: '20',
+      userId: '5d2f18e279fa500016b37a91',
       dayId: '6',
-      monthId: '1',
-      status: 'denied',
-      createdAt: new Date ('1989-05-05'),
-      updatedBy: {
-        _id: '5d2ef8a3bb703e0e80442911',
-        googleId: '117654722513027452478',
-        name: 'J',
-        __v: 0,
-      },
-      lastModified: new Date ('1989-05-05'),
-      message: 'Este es el mensaje',
+      monthId: '10',
+      status: 'approved',
+      createdAt: new Date ('1995-06-07'),
+      updatedBy: {"_id":"5d2f18e279fa500016b37a91","googleId":"118415261878187794841","name":"Juan","__v":0},
+      lastModified: new Date ('2019-07-05'),
+      message: " Q'hubo papi " ,
     }).save ();
   
     res.send ('done');
